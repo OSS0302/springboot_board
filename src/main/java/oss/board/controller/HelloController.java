@@ -46,5 +46,5 @@ public class HelloController {
             this.name = name;
         }
     }
-
+//API 연습하기 객체를  스트링 과 json 으로 반환한다.
 }
