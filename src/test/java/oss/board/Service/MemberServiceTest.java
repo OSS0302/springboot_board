@@ -35,12 +35,13 @@ class MemberServiceTest {
         member2.setName("spring");
         //when
         memberService.join(member1);
-        try{
-            memberService.join(member2);
-            fail();
-        }catch (IllegalStateException e ){
-            assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원 입니다.");
-        }
+        assertThrows(IllegalStateException.class,() -> memberService.join(member2));
+//        try{
+//            memberService.join(member2);
+//            fail();
+//        }catch (IllegalStateException e ){
+//            assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원 입니다.");
+//        }
 
 
         //than
