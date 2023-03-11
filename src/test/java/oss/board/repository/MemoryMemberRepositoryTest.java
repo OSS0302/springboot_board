@@ -16,7 +16,7 @@ public class MemoryMemberRepositoryTest {
         member.setName("spring");
         repository.save(member);
         Member result = repository.findById(member.getId()).get();
-        assertThat(member).isEqualTo(result);
+        assertThat(member).isEqualTo(null);
 
 
         //System.out.println("result = " + (result == member)); // 내가 새로 만든 것과 db에있느것이 같은지를 확인한다.
