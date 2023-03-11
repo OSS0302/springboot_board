@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 import oss.board.domain.Member;
 
 import java.util.*;
-@Repository
+
 public class MemoryMemberRepository implements MemberRepository {
     private  static Map<Long, Member> store = new HashMap<>();
     private  static long sequence =0L; // 0 1 2 를 만들어준다.
