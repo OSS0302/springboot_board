@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class MemoryMemberRepositoryTest {
     MemoryMemberRepository repository = new MemoryMemberRepository();
-    @AfterEach // 메서드 데스트 데이터를 한개씩 끝나면 실행되며 콜백매서드
+    @AfterEach // 메서드 데스트 데이터를 한개씩 끝나면 실행되며 클리어 해주는  콜백매서드
     public void afterEach(){
     repository.clearStore();
     }
@@ -54,7 +54,7 @@ public class MemoryMemberRepositoryTest {
         repository.save(member1);
 
         Member member2 = new Member();
-        member2.setName("S  pring2");
+        member2.setName("Spring2");
         repository.save(member2);
         List<Member>result = repository.findAll();
         assertThat(result.size()).isEqualTo(2);
