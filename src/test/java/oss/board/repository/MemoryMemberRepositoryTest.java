@@ -5,6 +5,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import oss.board.domain.Member;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class MemoryMemberRepositoryTest {
@@ -16,12 +18,30 @@ public class MemoryMemberRepositoryTest {
         member.setName("spring");
         repository.save(member);
         Member result = repository.findById(member.getId()).get();
-        assertThat(member).isEqualTo(null);
+        assertThat(member).isEqualTo(result);
 
 
         //System.out.println("result = " + (result == member)); // 내가 새로 만든 것과 db에있느것이 같은지를 확인한다.
         //Assertions.assertEquals(member, null);
 
     }
+    @Test
+    public void findByName(){
+        Member member1 = new Member();
+        member1.setName("Spring1");
+        repository.save(member1);
+
+
+        Member member2 = new Member();
+        member2.setName("Spring2");
+        repository.save(member2);
+        //shift+F6 를 쓰면 쉽게 만든다.
+
+        Member result = repository.findByName("Spring1").get();
+        assertThat(result).isEqualTo(member1);
+
+
+    }
+
 }
  
