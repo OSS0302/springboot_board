@@ -2,6 +2,7 @@ package oss.board.repository;
 
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import oss.board.domain.Member;
 
@@ -11,7 +12,12 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 
 public class MemoryMemberRepositoryTest {
-    MemberRepository repository = new MemoryMemberRepository();
+    MemoryMemberRepository repository = new MemoryMemberRepository();
+    @AfterEach // 메서드 데스트 데이터를 한개씩 끝나면 실행되며 콜백매서드
+    public void afterEach(){
+    repository.clearStore();
+    }
+
 
     @Test
     public void save(){
@@ -44,11 +50,11 @@ public class MemoryMemberRepositoryTest {
     @Test
     public void findAll(){
         Member member1 = new Member();
-        member1.setName("spring1");
+        member1.setName("Spring1");
         repository.save(member1);
 
         Member member2 = new Member();
-        member2.setName("spring2");
+        member2.setName("S  pring2");
         repository.save(member2);
         List<Member>result = repository.findAll();
         assertThat(result.size()).isEqualTo(2);
