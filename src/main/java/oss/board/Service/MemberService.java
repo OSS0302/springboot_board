@@ -1,5 +1,6 @@
 package oss.board.Service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import oss.board.domain.Member;
 import oss.board.repository.MemberRepository;
 import oss.board.repository.MemoryMemberRepository;
@@ -8,7 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     // 회원가입
     //Member member1 = result.get(); 겟으로 해서 직접 뽑아낼 수있지만 권장하지 않는다.
