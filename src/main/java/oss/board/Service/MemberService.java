@@ -1,16 +1,17 @@
 package oss.board.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import oss.board.domain.Member;
 import oss.board.repository.MemberRepository;
 import oss.board.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class MemberService {
     private final MemberRepository memberRepository;
-
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
