@@ -1,19 +1,33 @@
 package oss.board;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import oss.board.Service.MemberService;
+import oss.board.repository.JdbcMemberRepository;
 import oss.board.repository.MemberRepository;
 import oss.board.repository.MemoryMemberRepository;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class SpringConfig {
+    // db와 연동하기 위해서 데이터소스 만든후에 생성자 추가후 Autowired을 만든다.
+    private DataSource dataSource;
+    @Autowired
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     @Bean
     public MemberService memberService(){
+
         return new MemberService(memberRepository());
     }
     @Bean
-    public MemberRepository memberRepository(){
-        return new MemoryMemberRepository();
+    public MemberRepository memberRepository() {
+        //return new MemoryMemberRepository();
+        return  new JdbcMemberRepository(dataSource);
+
     }
 }
