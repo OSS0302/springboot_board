@@ -2,10 +2,13 @@ package oss.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import oss.board.Service.MemberService;
 import oss.board.domain.Member;
+
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -26,7 +29,13 @@ public class MemberController {
         memberService.join(member); // 회원가입 이름을 넘겨줘라.
 
         System.out.println("member.getName() = " + member.getName());
-        return "redict:/"; // 회원 가입이 끝나면 홈 화면으로 보여줘라
+        return "redirect:/"; // 회원 가입이 끝나면 홈 화면으로 보여줘라
+    }
+    @GetMapping("/members")
+    public String list(Model model){
+        List<Member>members =memberService.findMembers();
+        model.addAttribute("members",members);
+        return "/members/memberList";
     }
 
 }
