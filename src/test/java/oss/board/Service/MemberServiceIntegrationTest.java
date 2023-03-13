@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 import oss.board.domain.Member;
 import oss.board.repository.MemberRepository;
@@ -20,6 +21,7 @@ class MemberServiceIntegrationTest {
     @Autowired MemberRepository memberRepository;
 
     @Test
+    //@Commit // db에 자동으로 반영됩니다.
     void 회원가입(){
         //given
         Member member = new Member();
