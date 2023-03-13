@@ -2,13 +2,14 @@ package oss.board.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import oss.board.domain.Member;
 import oss.board.repository.MemberRepository;
 import oss.board.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Transactional // 항상 JPA를 쓰라면 @Transactional annotation을  데이터 변경하거나 저장 할 때사용된다..
 public class MemberService {
     private final MemberRepository memberRepository;
 
