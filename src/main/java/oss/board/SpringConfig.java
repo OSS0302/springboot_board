@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import oss.board.Service.MemberService;
 import oss.board.repository.JdbcMemberRepository;
+import oss.board.repository.JdbcTemplateMemberRepository;
 import oss.board.repository.MemberRepository;
 import oss.board.repository.MemoryMemberRepository;
 
@@ -27,7 +28,7 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository() {
         //return new MemoryMemberRepository();
-        return  new JdbcMemberRepository(dataSource);
-
+        //return  new JdbcMemberRepository(dataSource); 20년전 방식
+        return new JdbcTemplateMemberRepository(dataSource); //스프링 JdbcTemplate
     }
 }
