@@ -20,11 +20,19 @@ public class MemberService {
     // 회원가입
     //Member member1 = result.get(); 겟으로 해서 직접 뽑아낼 수있지만 권장하지 않는다.
     public Long join(Member member){
-        // 중복되는 이름이 있으면 안된다
-        validateDuplicateMember(member); // 중복 회원 검증
 
-        memberRepository.save(member);
-        return member.getId();
+        long start = System.currentTimeMillis(); // 시작 시간 측정 밀리단위
+        try{
+            // 중복되는 이름이 있으면 안된다
+            validateDuplicateMember(member); // 중복 회원 검증
+            memberRepository.save(member);
+            return member.getId();
+        }finally {
+            long finish = System.currentTimeMillis(); // 끝 시간 측정 밀리단위
+           long timeMs= finish-start;
+           System.out.println("join ="+timeMs+"ms");
+        }
+
     }
 
     private void validateDuplicateMember(Member member) {
@@ -35,6 +43,8 @@ public class MemberService {
     }
     // 전체 회원 조회
     public List<Member> findMembers(){
+        long start = System.currentTimeMillis(); // 시작 시간 측정 밀리단위
+
         return memberRepository.findAll();
 
     }
