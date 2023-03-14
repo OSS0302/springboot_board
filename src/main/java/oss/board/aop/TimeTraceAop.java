@@ -12,7 +12,7 @@ import java.awt.*;
 @Aspect
 @Component// 자바 빈에 등록해줘야해서 컴포넌트 어노테이션을 써도되고
 public class TimeTraceAop {
-    @Around("execution(* oss.board.repository.*(..))")// 패키지명  //원하는 곳에 공통 관심사항 적용(타게팅)하기
+    @Around("execution(* oss.board.Service..*(..))")// 패키지명 하위 서비스 나 리포지토리 등등  //원하는 곳에 공통 관심사항 적용(타게팅)하기
     public Object execute(ProceedingJoinPoint joinPoint ) throws Throwable {//예외가 터지면 던진다.
         long start = System.currentTimeMillis(); // 시작시간 측정
         System.out.println("START:"+joinPoint.toString());//여기 안에 어떤 메서드를 콜하는 확인
@@ -25,6 +25,5 @@ public class TimeTraceAop {
 
         }
     }
-
 
 }
