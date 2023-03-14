@@ -44,8 +44,15 @@ public class MemberService {
     // 전체 회원 조회
     public List<Member> findMembers(){
         long start = System.currentTimeMillis(); // 시작 시간 측정 밀리단위
+        try{
+            return memberRepository.findAll();
 
-        return memberRepository.findAll();
+        }finally {
+            long finish = System.currentTimeMillis(); // 끝 시간 측정 밀리단위
+            long timeMs= finish-start; // 걸린시간:끝난 시간- 시작 시간 하면 걸린시간이 나온다.
+            System.out.println("findMembers"+timeMs+"ms");
+        }
+
 
     }
     public Optional<Member>findOne(Long memberId){
